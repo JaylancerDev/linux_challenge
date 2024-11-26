@@ -33,7 +33,10 @@
                         <button class="btn btn-warning" wire:click="openModal({{ $customer->id }})">
                             View/Edit
                         </button>
-                        <button class="btn btn-danger" wire:click="deleteCustomer({{ $customer->id }})">
+                        <!-- <button class="btn btn-danger" wire:click="deleteCustomer({{ $customer->id }})">
+                            Delete
+                        </button> -->
+                        <button class="btn btn-danger" onclick="confirmDelete({{ $customer->id }})">
                             Delete
                         </button>
                     </td>
@@ -88,3 +91,11 @@
         </div>
     @endif
 </div>
+
+<script>
+    function confirmDelete(customerId) {
+        if (confirm('Are you sure you want to delete this customer?')) {
+            @this.call('deleteCustomer', customerId);
+        }
+    }
+</script>
