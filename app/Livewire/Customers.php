@@ -107,6 +107,7 @@ class Customers extends Component
 
         session()->flash('message', $this->customerId ? 'Customer updated successfully.' : 'Customer added successfully.');
         $this->closeModal();
+        $this->customers = Customer::all();
     }
 
     public function deleteCustomer($id)
