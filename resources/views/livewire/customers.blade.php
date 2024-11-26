@@ -6,22 +6,10 @@
         </div>
     @endif
 
-    <!-- Title and Add Record Button -->
-    <!-- <div class="d-flex justify-between mb-4">
-        <h2>Customer Dashboard</h2>
-        
-    </div> -->
-
-    <div class="row">
-        <div class="col-md-6 col-sm-12">
-            <h2>Customer Dashboard</h2>
-        </div>
-        <div class="col-md-6 col-sm-12 float-right">
-        <button class="btn btn-primary float-right" wire:click="openModal">
-            Add Record
-        </button>
-        </div>
-    </div>
+    <!-- Add Record Button -->
+    <button class="btn btn-primary mb-4" wire:click="openModal">
+        Add Record
+    </button>
 
     <!-- Customers Table -->
     <table class="table table-bordered">
