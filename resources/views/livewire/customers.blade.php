@@ -43,49 +43,48 @@
     </table>
 
     <!-- Modal -->
-   <!-- Modal -->
     @if ($isModalOpen)
-        <div class="modal-backdrop fixed inset-0 bg-black bg-opacity-50"></div>
-        <div class="modal-dialog fixed inset-0 flex justify-center items-center">
-            <div class="modal-content bg-white rounded shadow-lg w-1/3">
-                <div class="modal-header flex justify-between items-center p-4 border-b">
-                    <h5 class="modal-title text-xl font-bold">{{ $customerId ? 'Edit Customer' : 'Add Customer' }}</h5>
-                    <button type="button" class="close-button text-gray-500 text-xl" wire:click="closeModal">
-                        &times;
-                    </button>
-                </div>
-                <div class="modal-body p-4">
-                    <!-- Name -->
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" id="name" wire:model="name" class="form-control @error('name') is-invalid @enderror">
-                        @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+        <div class="modal fade show" tabindex="-1" style="display: block;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ $customerId ? 'Edit Customer' : 'Add Customer' }}</h5>
+                        <button type="button" class="close" wire:click="closeModal">
+                            <span>&times;</span>
+                        </button>
                     </div>
+                    <div class="modal-body">
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" wire:model="name" class="form-control @error('name') is-invalid @enderror">
+                            @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
 
-                    <!-- Email -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" wire:model="email" class="form-control @error('email') is-invalid @enderror">
-                        @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    </div>
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" wire:model="email" class="form-control @error('email') is-invalid @enderror">
+                            @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
 
-                    <!-- Phone Number -->
-                    <div class="mb-3">
-                        <label for="phone_number" class="form-label">Phone Number</label>
-                        <input type="text" id="phone_number" wire:model="phone_number" class="form-control @error('phone_number') is-invalid @enderror">
-                        @error('phone_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <!-- Phone Number -->
+                        <div class="mb-3">
+                            <label for="phone_number" class="form-label">Phone Number</label>
+                            <input type="text" id="phone_number" wire:model="phone_number" class="form-control @error('phone_number') is-invalid @enderror">
+                            @error('phone_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer p-4 border-t">
-                    <button type="button" class="btn btn-secondary" wire:click="closeModal">Cancel</button>
-                    @if ($customerId)
-                        <button type="button" class="btn btn-primary" wire:click="saveCustomer" :disabled="$isEditDisabled">Save Changes</button>
-                    @else
-                        <button type="button" class="btn btn-success" wire:click="saveCustomer">Add Customer</button>
-                    @endif
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" wire:click="closeModal">Cancel</button>
+                        @if ($customerId)
+                            <button type="button" class="btn btn-primary" wire:click="saveCustomer" :disabled="$isEditDisabled">Save Changes</button>
+                        @else
+                            <button type="button" class="btn btn-success" wire:click="saveCustomer">Add Customer</button>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
     @endif
-
 </div>
