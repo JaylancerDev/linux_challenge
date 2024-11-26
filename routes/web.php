@@ -23,13 +23,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::get('/dashboard', function () {
-    if (Auth::check()) {
-        // Redirect authenticated users to the dashboard
-        return redirect()->route('customers');
-    } else {
-        // Redirect non-authenticated users to the login page
-        return redirect()->route('login');
-    }
+    return redirect()->route('customers');
 });
 
 
