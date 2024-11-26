@@ -22,7 +22,7 @@ class Customers extends Component
         // $this->customers = Customer::all();
         // return view('livewire.customers');
         // Paginate the customers (10 per page)
-        $customers = Customer::paginate(10);
+        $this->customers = Customer::paginate(10);
 
         return view('livewire.customers', compact('customers'));
     }
