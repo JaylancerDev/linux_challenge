@@ -29,7 +29,7 @@ new class extends Component
         </button>
 
         <!-- Navigation Links -->
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('customers') ? 'active' : '' }}" href="{{ route('customers') }}" wire:navigate>
@@ -37,7 +37,7 @@ new class extends Component
                     </a>
                 </li>
             </ul>
-        </div>
+        </div> -->
 
         <!-- User Settings Dropdown (Desktop) -->
         <div class="d-none d-sm-block">
