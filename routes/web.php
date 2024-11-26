@@ -4,7 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Customers;
 
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()) {
+        // Redirect authenticated users to the dashboard
+        return redirect()->route('dashboard');
+    } else {
+        // Redirect non-authenticated users to the login page
+        return redirect()->route('login');
+    }
 });
 
 Route::middleware(['auth'])->group(function () {
