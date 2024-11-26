@@ -98,22 +98,6 @@
 <body>
     {{ $slot }}
     @livewireScripts
-    <script>
-    // document.addEventListener('livewire:load', function () {
-    //     Livewire.on('toast', (message, type) => {
-    //         if (['success', 'info', 'warning', 'error'].includes(type)) {
-    //             toastr.options = {
-    //                 "closeButton": true,
-    //                 "progressBar": true,
-    //                 "positionClass": "toast-top-right", // Adjust position as needed
-    //                 "timeOut": "5000", // Adjust display time
-    //             };
-    //             toastr[type](message);
-    //         } else {
-    //             console.error('Invalid Toastr type:', type);
-    //         }
-    //     });
-    // });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
