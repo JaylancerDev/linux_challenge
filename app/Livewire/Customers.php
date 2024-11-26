@@ -113,5 +113,6 @@ class Customers extends Component
     {
         Customer::findOrFail($id)->delete();
         session()->flash('message', 'Customer deleted successfully.');
+        $this->customers = Customer::all();
     }
 }
