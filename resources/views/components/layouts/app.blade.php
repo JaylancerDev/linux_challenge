@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
     <style>
         /* Styles for Modal */
-        .modal-backdrop {
+        .modal{
             display: block;
             position: fixed;
             inset: 0;
