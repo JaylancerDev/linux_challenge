@@ -6,6 +6,12 @@ use App\Livewire\Customers;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard'); // Ensure a 'dashboard.blade.php' exists in your views folder
+    })->name('dashboard');
+});
 // Route::get('/', function () {
 //     return view('auth.login'); // Redirects to login
 // })->middleware('guest');
