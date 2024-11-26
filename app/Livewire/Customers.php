@@ -23,10 +23,10 @@ class Customers extends Component
     ];
 
      // Use the auth middleware
-     public function mount()
-     {
-         $this->middleware('auth');
-     }
+    //  public function mount()
+    //  {
+    //      $this->middleware('auth');
+    //  }
  
     public function render()
     {
