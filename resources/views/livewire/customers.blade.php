@@ -61,6 +61,7 @@
                         </table>
 
                         <!-- Modal -->
+                        <!-- Modal -->
                         @if ($isModalOpen)
                             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
                                 <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
@@ -103,6 +104,7 @@
                                 </div>
                             </div>
                         @endif
+
                     </div>
 
 
