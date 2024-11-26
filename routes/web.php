@@ -2,14 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Livewire\Customers;
+Route::view('/', 'welcome');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
-Route::get('/customers', Customers::class);
+Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
 
-Route::get('/phpmyadmin', function () {
-    abort(404);
-});
+require __DIR__.'/auth.php';
