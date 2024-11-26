@@ -6,14 +6,10 @@
         </div>
     @endif
 
-    <!-- Dashboard Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Customer Dashboard</h2>
-        <!-- Add Record Button aligned to the right -->
-        <button class="btn btn-primary" wire:click="openModal">
-            Add Record
-        </button>
-    </div>
+    <!-- Add Record Button -->
+    <button class="btn btn-primary mb-4" wire:click="openModal">
+        Add Record
+    </button>
 
     <!-- Customers Table -->
     <table class="table table-bordered">
@@ -27,8 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            @var_dump($customers);
-            @forelse ($customers as $customer)
+            @foreach ($customers as $customer)
                 <tr>
                     <td>{{ $customer->id }}</td>
                     <td>{{ $customer->name }}</td>
@@ -38,23 +33,17 @@
                         <button class="btn btn-warning" wire:click="openModal({{ $customer->id }})">
                             View/Edit
                         </button>
+                        <!-- <button class="btn btn-danger" wire:click="deleteCustomer({{ $customer->id }})">
+                            Delete
+                        </button> -->
                         <button class="btn btn-danger" onclick="confirmDelete({{ $customer->id }})">
                             Delete
                         </button>
                     </td>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="5" class="text-center">No customers found.</td>
-                </tr>
-            @endforelse
+            @endforeach
         </tbody>
     </table>
-
-    <!-- Pagination -->
-    <div class="d-flex justify-content-center">
-        {{ $customers->links() }}
-    </div>
 
     <!-- Modal -->
     @if ($isModalOpen)
