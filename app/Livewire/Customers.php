@@ -22,6 +22,12 @@ class Customers extends Component
         'phone_number' => 'required|regex:/^07\d{9}$/|unique:customers,phone_number',
     ];
 
+     // Use the auth middleware
+     public function mount()
+     {
+         $this->middleware('auth');
+     }
+ 
     public function render()
     {
         $this->customers = Customer::all();
