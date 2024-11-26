@@ -6,7 +6,7 @@
     <title>Livewire App</title>
     <link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     @livewireStyles
 
 </head>
