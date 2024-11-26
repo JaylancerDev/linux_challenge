@@ -19,8 +19,12 @@ class Customers extends Component
 
     public function render()
     {
-        $this->customers = Customer::all();
-        return view('livewire.customers');
+        // $this->customers = Customer::all();
+        // return view('livewire.customers');
+        // Paginate the customers (10 per page)
+        $customers = Customer::paginate(10);
+
+        return view('livewire.customers', compact('customers'));
     }
 
     public function openModal($id = null)
