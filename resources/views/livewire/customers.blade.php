@@ -1,4 +1,4 @@
-<div class="table-container">
+<div class="container mt-5">
     <!-- Flash Messages -->
     @if (session()->has('message'))
         <div class="alert alert-success">
@@ -7,11 +7,13 @@
     @endif
 
     <!-- Add Record Button -->
-    <button class="bg-green" wire:click="openModal">Add Record</button>
+    <button class="btn btn-primary mb-4" wire:click="openModal">
+        Add Record
+    </button>
 
     <!-- Customers Table -->
-    <table>
-        <thead>
+    <table class="table table-bordered">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -28,10 +30,10 @@
                     <td>{{ $customer->email }}</td>
                     <td>{{ $customer->phone_number }}</td>
                     <td>
-                        <button class="bg-yellow" wire:click="openModal({{ $customer->id }})">
+                        <button class="btn btn-warning" wire:click="openModal({{ $customer->id }})">
                             View/Edit
                         </button>
-                        <button class="bg-red" wire:click="deleteCustomer({{ $customer->id }})">
+                        <button class="btn btn-danger" wire:click="deleteCustomer({{ $customer->id }})">
                             Delete
                         </button>
                     </td>
@@ -42,39 +44,45 @@
 
     <!-- Modal -->
     @if ($isModalOpen)
-        <div class="modal-overlay">
-            <div class="modal-content">
-                <h2>{{ $customerId ? 'Edit Customer' : 'Add Customer' }}</h2>
+        <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ $customerId ? 'Edit Customer' : 'Add Customer' }}</h5>
+                        <button type="button" class="close" wire:click="closeModal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" wire:model="name" class="form-control @error('name') is-invalid @enderror">
+                            @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
 
-                <!-- Name -->
-                <div class="input-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" wire:model="name" placeholder="Enter name">
-                    @error('name') <div class="error">{{ $message }}</div> @enderror
-                </div>
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" wire:model="email" class="form-control @error('email') is-invalid @enderror">
+                            @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
 
-                <!-- Email -->
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" wire:model="email" placeholder="Enter email">
-                    @error('email') <div class="error">{{ $message }}</div> @enderror
-                </div>
-
-                <!-- Phone Number -->
-                <div class="input-group">
-                    <label for="phone_number">Phone Number</label>
-                    <input type="text" id="phone_number" wire:model="phone_number" placeholder="Enter phone number">
-                    @error('phone_number') <div class="error">{{ $message }}</div> @enderror
-                </div>
-
-                <!-- Buttons -->
-                <div class="modal-actions">
-                    <button class="btn" wire:click="closeModal">Cancel</button>
-                    @if ($customerId)
-                        <button class="btn" wire:click="saveCustomer" :disabled="$isEditDisabled">Save Changes</button>
-                    @else
-                        <button class="btn" wire:click="saveCustomer">Add Customer</button>
-                    @endif
+                        <!-- Phone Number -->
+                        <div class="mb-3">
+                            <label for="phone_number" class="form-label">Phone Number</label>
+                            <input type="text" id="phone_number" wire:model="phone_number" class="form-control @error('phone_number') is-invalid @enderror">
+                            @error('phone_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" wire:click="closeModal">Cancel</button>
+                        @if ($customerId)
+                            <button type="button" class="btn btn-primary" wire:click="saveCustomer" :disabled="$isEditDisabled">Save Changes</button>
+                        @else
+                            <button type="button" class="btn btn-success" wire:click="saveCustomer">Add Customer</button>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
