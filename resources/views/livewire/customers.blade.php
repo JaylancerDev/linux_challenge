@@ -1,14 +1,14 @@
-<div class="container mt-5">
+<div class="container">
     <!-- Flash Messages -->
     @livewire('layout.navigation')
     @if (session()->has('message'))
-        <div class="alert alert-success">
+        <div class="alert alert-success mt-5">
             {{ session('message') }}
         </div>
     @endif
 
     <!-- Add Record Button -->
-    <button class="btn btn-primary mb-4" wire:click="openModal">
+    <button class="btn btn-primary mb-4 mt-5" wire:click="openModal">
         Add Record
     </button>
 
