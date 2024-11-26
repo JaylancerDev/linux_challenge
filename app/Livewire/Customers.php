@@ -2,7 +2,6 @@
 namespace App\Livewire;
 
 use App\Models\Customer;
-use Livewire\WithPagination;
 use Livewire\Component;
 
 use Illuminate\Validation\Rule;
@@ -13,8 +12,6 @@ class Customers extends Component
     public $isModalOpen = false;
     public $isEditDisabled = true;
 
-    // Enable pagination
-    use WithPagination;
 
     protected $rules = [
         'name' => 'required|min:3',
