@@ -27,6 +27,7 @@
             </tr>
         </thead>
         <tbody>
+            @var_dump($customers);
             @forelse ($customers as $customer)
                 <tr>
                     <td>{{ $customer->id }}</td>
