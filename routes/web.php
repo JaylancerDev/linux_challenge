@@ -11,6 +11,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard'); // Ensure a 'dashboard.blade.php' exists in your views folder
     })->name('dashboard');
+    Route::get('/profile', function () {
+        return view('profile'); // Ensure there is a 'profile.blade.php' in your views folder
+    })->name('profile');
 });
 // Route::get('/', function () {
 //     return view('auth.login'); // Redirects to login
