@@ -92,3 +92,11 @@
         </div>
     @endif
 </div>
+
+<script>
+    function confirmDelete(customerId) {
+        if (confirm('Are you sure you want to delete this customer?')) {
+            @this.call('deleteCustomer', customerId);
+        }
+    }
+</script>
