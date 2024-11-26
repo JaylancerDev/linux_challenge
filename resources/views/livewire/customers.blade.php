@@ -27,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($customers->data as $customer)
+            @forelse ($customers as $customer)
                 <tr>
                     <td>{{ $customer->id }}</td>
                     <td>{{ $customer->name }}</td>
