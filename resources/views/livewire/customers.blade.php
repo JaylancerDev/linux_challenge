@@ -16,8 +16,8 @@
         <div class="col-md-6 col-sm-12">
             <h2>Customer Dashboard</h2>
         </div>
-        <div class="col-md-6 col-sm-12 text-right">
-        <button class="btn btn-primary" wire:click="openModal">
+        <div class="col-md-6 col-sm-12 float-right">
+        <button class="btn btn-primary float-right" wire:click="openModal">
             Add Record
         </button>
         </div>
