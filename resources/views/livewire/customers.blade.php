@@ -7,11 +7,20 @@
     @endif
 
     <!-- Title and Add Record Button -->
-    <div class="d-flex justify-between mb-4">
+    <!-- <div class="d-flex justify-between mb-4">
         <h2>Customer Dashboard</h2>
+        
+    </div> -->
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <h2>Customer Dashboard</h2>
+        </div>
+        <div class="col-md-6 col-sm-12 text-right">
         <button class="btn btn-primary" wire:click="openModal">
             Add Record
         </button>
+        </div>
     </div>
 
     <!-- Customers Table -->
