@@ -1,5 +1,6 @@
 <div class="container mt-5">
     <!-- Flash Messages -->
+    @livewire('navigation')
     @if (session()->has('message'))
         <div class="alert alert-success">
             {{ session('message') }}
