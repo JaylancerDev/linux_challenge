@@ -19,42 +19,39 @@
                     <div class="container mt-5">
                         <!-- Flash Messages -->
                         @if (session()->has('message'))
-                            <div class="alert alert-success">
+                            <div class="bg-green-500 text-white p-4 rounded-lg mb-4">
                                 {{ session('message') }}
                             </div>
                         @endif
 
                         <!-- Add Record Button -->
-                        <button class="btn btn-primary mb-4" wire:click="openModal">
+                        <button class="bg-blue-500 text-white p-2 rounded-md mb-4 hover:bg-blue-600 focus:outline-none" wire:click="openModal">
                             Add Record
                         </button>
 
                         <!-- Customers Table -->
-                        <table class="table table-bordered">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>Actions</th>
+                        <table class="min-w-full table-auto bg-white border border-gray-200 shadow-md rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="px-4 py-2 text-left">ID</th>
+                                    <th class="px-4 py-2 text-left">Name</th>
+                                    <th class="px-4 py-2 text-left">Email</th>
+                                    <th class="px-4 py-2 text-left">Phone Number</th>
+                                    <th class="px-4 py-2 text-left">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($customers as $customer)
-                                    <tr>
-                                        <td>{{ $customer->id }}</td>
-                                        <td>{{ $customer->name }}</td>
-                                        <td>{{ $customer->email }}</td>
-                                        <td>{{ $customer->phone_number }}</td>
-                                        <td>
-                                            <button class="btn btn-warning" wire:click="openModal({{ $customer->id }})">
+                                    <tr class="border-t">
+                                        <td class="px-4 py-2">{{ $customer->id }}</td>
+                                        <td class="px-4 py-2">{{ $customer->name }}</td>
+                                        <td class="px-4 py-2">{{ $customer->email }}</td>
+                                        <td class="px-4 py-2">{{ $customer->phone_number }}</td>
+                                        <td class="px-4 py-2">
+                                            <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 focus:outline-none" wire:click="openModal({{ $customer->id }})">
                                                 View/Edit
                                             </button>
-                                            <!-- <button class="btn btn-danger" wire:click="deleteCustomer({{ $customer->id }})">
-                                                Delete
-                                            </button> -->
-                                            <button class="btn btn-danger" onclick="confirmDelete({{ $customer->id }})">
+                                            <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none" onclick="confirmDelete({{ $customer->id }})">
                                                 Delete
                                             </button>
                                         </td>
@@ -65,50 +62,49 @@
 
                         <!-- Modal -->
                         @if ($isModalOpen)
-                            <div class="modal fade show" tabindex="-1" style="display: block;">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">{{ $customerId ? 'Edit Customer' : 'Add Customer' }}</h5>
-                                            <button type="button" class="close" wire:click="closeModal">
-                                                <span>&times;</span>
-                                            </button>
+                            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
+                                <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                                    <div class="flex justify-between items-center border-b pb-4">
+                                        <h5 class="text-xl font-semibold">{{ $customerId ? 'Edit Customer' : 'Add Customer' }}</h5>
+                                        <button type="button" class="text-gray-500 hover:text-gray-700" wire:click="closeModal">
+                                            <span>&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="mt-4">
+                                        <!-- Name -->
+                                        <div class="mb-4">
+                                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                            <input type="text" id="name" wire:model="name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md @error('name') border-red-500 @enderror">
+                                            @error('name') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
                                         </div>
-                                        <div class="modal-body">
-                                            <!-- Name -->
-                                            <div class="mb-3">
-                                                <label for="name" class="form-label">Name</label>
-                                                <input type="text" id="name" wire:model="name" class="form-control @error('name') is-invalid @enderror">
-                                                @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                            </div>
 
-                                            <!-- Email -->
-                                            <div class="mb-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" id="email" wire:model="email" class="form-control @error('email') is-invalid @enderror">
-                                                @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                            </div>
+                                        <!-- Email -->
+                                        <div class="mb-4">
+                                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                            <input type="email" id="email" wire:model="email" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md @error('email') border-red-500 @enderror">
+                                            @error('email') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+                                        </div>
 
-                                            <!-- Phone Number -->
-                                            <div class="mb-3">
-                                                <label for="phone_number" class="form-label">Phone Number</label>
-                                                <input type="text" id="phone_number" wire:model="phone_number" class="form-control @error('phone_number') is-invalid @enderror">
-                                                @error('phone_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                            </div>
+                                        <!-- Phone Number -->
+                                        <div class="mb-4">
+                                            <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                                            <input type="text" id="phone_number" wire:model="phone_number" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md @error('phone_number') border-red-500 @enderror">
+                                            @error('phone_number') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" wire:click="closeModal">Cancel</button>
-                                            @if ($customerId)
-                                                <button type="button" class="btn btn-primary" wire:click="saveCustomer" :disabled="$isEditDisabled">Save Changes</button>
-                                            @else
-                                                <button type="button" class="btn btn-success" wire:click="saveCustomer">Add Customer</button>
-                                            @endif
-                                        </div>
+                                    </div>
+                                    <div class="mt-6 flex justify-end">
+                                        <button type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mr-2 hover:bg-gray-400" wire:click="closeModal">Cancel</button>
+                                        @if ($customerId)
+                                            <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none" wire:click="saveCustomer" :disabled="$isEditDisabled">Save Changes</button>
+                                        @else
+                                            <button type="button" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none" wire:click="saveCustomer">Add Customer</button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         @endif
                     </div>
+
 
                 </div>
             </div>
