@@ -1,15 +1,20 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+use App\Livewire\Customers;
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+// Protect routes with the auth middleware
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [CustomerController::class, 'index'])->name('dashboard');
+    Route::get('/customers', [CustomerController::class, 'index']);
+});
 
-require __DIR__.'/auth.php';
+// Route::get('/customers', Customers::class);
+
+Route::get('/phpmyadmin', function () {
+    abort(404);
+});
