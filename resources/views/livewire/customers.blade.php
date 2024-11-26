@@ -106,15 +106,16 @@
                     </div>
 
 
+
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
-<script>
-    function confirmDelete(customerId) {
-        if (confirm('Are you sure you want to delete this customer?')) {
-            @this.call('deleteCustomer', customerId);
+    <script>
+        function confirmDelete(customerId) {
+            if (confirm('Are you sure you want to delete this customer?')) {
+                @this.call('deleteCustomer', customerId);
+            }
         }
-    }
-</script>
+    </script>
+</x-app-layout>
