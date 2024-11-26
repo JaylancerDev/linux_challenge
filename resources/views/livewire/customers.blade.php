@@ -1,6 +1,3 @@
-
-
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -56,7 +53,7 @@
 
                 <!-- Modal -->
                 @if ($isModalOpen)
-                    <div class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+                    <div class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
                         <div class="bg-white rounded shadow-lg p-6 w-1/3">
                             <h2 class="text-xl font-bold mb-4">{{ $customerId ? 'Edit Customer' : 'Add Customer' }}</h2>
 
@@ -81,17 +78,15 @@
                                 @error('phone_number') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
 
-                            <!-- Buttons -->
+                            <!-- Modal Buttons -->
                             <div class="flex justify-end">
                                 <button class="bg-gray-500 text-white px-4 py-2 rounded mr-2" wire:click="closeModal">Cancel</button>
-                                @if ($customerId)
-                                    <button 
-                                wire:click="saveCustomer" 
-                            class="btn btn-primary" 
-                                :disabled="$isEditDisabled">
-                                Save Changes
-                        </button>
 
+                                <!-- Save/Edit or Add Button -->
+                                @if ($customerId)
+                                    <button class="bg-blue-500 text-white px-4 py-2 rounded" wire:click="saveCustomer" :disabled="$isEditDisabled">
+                                        Save Changes
+                                    </button>
                                 @else
                                     <button class="bg-green-500 text-white px-4 py-2 rounded" wire:click="saveCustomer">
                                         Add Customer
