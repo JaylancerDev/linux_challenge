@@ -29,7 +29,7 @@ class Customers extends Component
         $this->customers = Customer::paginate(10); // Paginate 10 customers per page
 
         // Return the view with customers
-        return view('livewire.customers', ['customers' => $this->customers]);
+        return view('livewire.customers', ['customers' => $this->customers['data']]);
     }
 
     public function openModal($id = null)
