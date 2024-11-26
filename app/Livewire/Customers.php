@@ -2,7 +2,9 @@
 namespace App\Livewire;
 
 use App\Models\Customer;
+use Livewire\WithPagination;
 use Livewire\Component;
+
 use Illuminate\Validation\Rule;
 
 class Customers extends Component
@@ -10,6 +12,9 @@ class Customers extends Component
     public $customers, $name, $email, $phone_number, $customerId;
     public $isModalOpen = false;
     public $isEditDisabled = true;
+
+    // Enable pagination
+    use WithPagination;
 
     protected $rules = [
         'name' => 'required|min:3',
@@ -26,10 +31,12 @@ class Customers extends Component
 
         // return view('livewire.customers', ['customers' => $customers]);
 
-        $this->customers = Customer::paginate(10); // Paginate 10 customers per page
+        
+        $customers = Customer::paginate(10); // Fetch 10 customers per page
 
-        // Return the view with customers
-        return view('livewire.customers', ['customers' => $this->customers['data']]);
+        return view('livewire.customers', [
+            'customers' => $customers
+        ]);
     }
 
     public function openModal($id = null)
