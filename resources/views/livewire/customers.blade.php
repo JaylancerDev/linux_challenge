@@ -27,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($customers as $customer)
+            @forelse ($customers as $customer)
                 <tr>
                     <td>{{ $customer->id }}</td>
                     <td>{{ $customer->name }}</td>
@@ -42,7 +42,11 @@
                         </button>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="5" class="text-center">No customers found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 
